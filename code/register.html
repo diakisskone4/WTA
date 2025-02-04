@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <!-- Lien vers MDBootstrap pour les styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center text-primary">Créer un compte</h1>
+        <form id="register-form" class="mt-4 p-4 shadow rounded bg-white">
+            <!-- Nom d'utilisateur -->
+            <div data-mdb-input-wrapper-class="mb-4">
+                <input type="text" id="register-username" class="form-control" required />
+                <label class="form-label" for="register-username">Nom d'utilisateur</label>
+            </div>
+            <!-- Email -->
+            <div data-mdb-input-wrapper-class="mb-4">
+                <input type="email" id="register-email" class="form-control" required />
+                <label class="form-label" for="register-email">Email</label>
+            </div>
+            <!-- Mot de passe -->
+            <div data-mdb-input-wrapper-class="mb-4">
+                <input type="password" id="register-password" class="form-control" required />
+                <label class="form-label" for="register-password">Mot de passe</label>
+            </div>
+            <!-- Photo de profil -->
+            <div class="mb-4">
+                <label for="register-photo" class="form-label">Photo de profil</label>
+                <input type="file" id="register-photo" class="form-control" accept="image/*" required>
+                <div class="mt-3">
+                    <img id="preview-photo" src="#" alt="Prévisualisation" class="img-thumbnail d-none" style="max-width: 150px;">
+                </div>
+            </div>
+            <!-- Bouton S'inscrire -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">S'inscrire</button>
+            <p><a href="login.html">passe a la Connexion</a></p>
+            <!-- Message -->
+            <p id="message" class="text-center"></p>
+        </form>
+    </div>
+
+    <!-- Lien vers les scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script>
+        // Prévisualisation de la photo de profil
+        const photoInput = document.getElementById('register-photo');
+        const preview = document.getElementById('preview-photo');
+
+        photoInput.addEventListener('change', () => {
+            const file = photoInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    preview.src = reader.result;
+                    preview.classList.remove('d-none');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                preview.classList.add('d-none');
+            }
+        });
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
